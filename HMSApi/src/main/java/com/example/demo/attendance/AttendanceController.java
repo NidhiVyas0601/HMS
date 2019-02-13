@@ -37,7 +37,7 @@ public class AttendanceController {
 		return attendanceService.getAllAttendance();
 	}
 	
-@RequestMapping("/attendance/{employeeId}/{id}")
+@RequestMapping("/attendance/{id}")
 	public Optional<Attendance> getAttendance(@PathVariable int id ) {
 		return attendanceService.getAttendance(id);
 	}

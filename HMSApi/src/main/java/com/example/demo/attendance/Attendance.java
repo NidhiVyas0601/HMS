@@ -27,11 +27,7 @@ public class Attendance {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;	
-	private String availabiltiy;
-	
-	 @Column(nullable = false, updatable = false)
-	    @Temporal(TemporalType.TIMESTAMP)
-	    @CreatedDate
+	private String availabiltiy;	
 	private Date createdAt;
 	
 	 @ManyToOne
@@ -44,11 +40,11 @@ public class Attendance {
 	
 	
 
-	public Attendance(int id, String availabiltiy, Date createdAt, Employee employee) {
+	public Attendance(int id, String availabiltiy, Employee employee) {
 		super();
 		this.id = id;
 		this.availabiltiy = availabiltiy;
-		this.createdAt = createdAt;
+		this.createdAt = java.util.Calendar.getInstance().getTime();
 		this.employee = employee;
 	}
 
@@ -75,7 +71,7 @@ public class Attendance {
 	}
 
 	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+		this.createdAt = java.util.Calendar.getInstance().getTime();
 	}
 
 	public Employee getEmployee() {

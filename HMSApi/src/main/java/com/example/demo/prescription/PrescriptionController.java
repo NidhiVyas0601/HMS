@@ -37,7 +37,7 @@ public class PrescriptionController {
 		return prescriptionservice.getAllPrescriptions();
 	}
 	
-@RequestMapping("/doctors/{patientdoctorId}/prescription/{prescriptionId}")
+@RequestMapping("/prescription/{prescriptionId}")
 	public Optional<Prescription> getPrescription(@PathVariable int prescriptionId ) {
 		return prescriptionservice.getPrescription(prescriptionId);
 	}

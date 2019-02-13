@@ -43,8 +43,8 @@ public class DoctorService {
 	}
 
 
-	public void deleteDoctor(int id) {
-		doctorRepository.deleteById(id);
+	public void deleteDoctor(int doctorId) {
+		doctorRepository.deleteById(doctorId);
 		
 		//Appointments.removeIf(e -> e.getId() == id);
 		

@@ -68,7 +68,7 @@ public class DoctorController {
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/employees/{employeeId}/doctors/{doctorId}")
+	@RequestMapping(method=RequestMethod.DELETE, value="/doctors/{doctorId}")
 	public void deleteDoctor( @PathVariable int doctorId) {
 		docService.deleteDoctor(doctorId);
 

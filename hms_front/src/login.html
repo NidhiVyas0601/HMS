@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>HMS</title>
+    <meta name="description" content="Dashboard of the HMS Applicaiton." />
+    <meta name="author" content="Parth Kinjal Shah" />
+    <meta name="Copyright" content="Parth Kinjal Shah 2018" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="CSS/app.v2.css" type="text/css" />
+    <link rel="stylesheet" href="CSS/font.css" type="text/css" cache="false" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--[if lt IE 9]>
+            <script src="js/ie/html5shiv.js" cache="false"></script>
+            <script src="js/ie/respond.min.js" cache="false"></script>
+            <script src="js/ie/excanvas.js" cache="false"></script> <![endif]-->
+</head>
+
+<body>
+    <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+        <div class="container aside-xxl">
+            <a class="navbar-brand block" href="index.JSP">Hospital Management System</a>
+            <section class="panel panel-default bg-white m-t-lg">
+                <header class="panel-heading text-center">
+                    <strong>Sign in</strong>
+                </header>
+                <form class="panel-body wrapper-lg" id="secondTable">
+                    <div class="form-group">
+                        <label class="control-label">Employee ID</label>
+                        <input type="text" placeholder="10001" class="form-control input-lg" v-model="id">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Password</label>
+                        <input type="password" id="inputPassword" placeholder="Password" class="form-control input-lg" v-model="pass">
+                    </div>
+                    <div class="line line-dashed"></div>
+
+                    <input type="button" class="btn btn-success btn-s-xs" @click="signIn" value="Sign In"></button>
+                </form>
+            </section>
+        </div>
+    </section>
+    <!-- footer -->
+    <footer id="footer">
+        <div class="text-center padder">
+            <p>
+                <small>PARTH KINJAL SHAH<br>Copyright &copy; 2018</small>
+            </p>
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="js/app.v2.js"></script>
+
+
+    <script>
+        var secondTable = new Vue({
+  el: '#secondTable',
+  data: {
+    id:'',
+    pass:'',
+    emp:{}
+  },     
+       methods: {
+        signIn: function() {
+            axios.get('http://localhost:8080/login/'+this.id+'/'+this.pass)
+            .then(response => {
+            this.emp = response.data
+            console.log(this.emp)
+            localStorage.setItem('empId',this.id)
+           if(this.emp.designation=="Doctor"){
+                window.location.href = "/src/doctors/viewDoctor.html";
+            }
+            else if(this.emp.designation=="Reception"){
+                window.location.href = "/src/patients/viewPatients.html";
+            }
+            else if(this.emp.designation=="Admin"){
+                window.location.href = "/src/employees/viewEmployees.html";
+            }
+         
+          })
+          .catch(error => {
+            console.log(error)
+          })
+         }
+
+         
+         }
+})       
+    </script>
+</body>
+
+</html>
